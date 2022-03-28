@@ -1,24 +1,59 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column            |Type    |Options    |
+|------------------|--------|-----------|
+|nickname          |string  |null: false|
+|email             |string  |null: false,unique: true|
+|encrypted_password|string  |null: false|
+|myouji            |string  |null: false|
+|namae             |string  |null: false|
+|kanamyouji        |string  |null: false|
+|kananamae         |string  |null: false|
+|birthday          |string  |null: false|
 
-Things you may want to cover:
+### Association
+has_many :commoinfos
+has_many :sendrecord
 
-* Ruby version
+## commo_infosテーブル
 
-* System dependencies
+|Column            |Type    |Options    |
+|------------------|--------|-----------|
+|commo_name        |string  |null: false|
+|commo_ex          |string  |null: false|
+|commo_cate        |string  |null: false|
+|commo_st          |string  |null: false|
+|commo_deli_carge  |string  |null: false|
+|commo_deli_sor    |string  |null: false|
+|commo_deli_day    |string  |null: false|
+|commo_price       |string  |null: false|
 
-* Configuration
+### Association
+belongs_to :users
+has_one_attached :buyinfos
+has_one_attached :sendrecord
 
-* Database creation
+## send_recordsテーブル
 
-* Database initialization
+|Column            |Type    |Options    |
+|------------------|--------|-----------|
+|who_send          |string  |null: false|
+|what_send         |string  |null: false|
 
-* How to run the test suite
+### Association
+belongs_to :users
+has_one_attached :buyinfos
+has_one_attached :sendrecord
 
-* Services (job queues, cache servers, search engines, etc.)
+## buy_infosテーブル
 
-* Deployment instructions
+|Column            |Type    |Options    |
+|------------------|--------|-----------|
+|post_code         |string  |null: false|
+|prefectures       |string  |null: false|
+|municipality      |string  |null: false|
+|cities            |string  |null: false|
+|tell_num          |string  |null: false|
 
-* ...
+### Association
+has_one_attached :commo_infos

@@ -12,10 +12,10 @@
 |birthday          |date    |null: false|
 
 ### Association
-has_many :commo_infos
+has_many :commos
 has_many :send_records
 
-## commo_infosテーブル
+## commosテーブル
 
 |Column               |Type       |Options    |
 |---------------------|-----------|-----------|
@@ -30,7 +30,7 @@ has_many :send_records
 |user                 |references |null: false,foreign_key: true|
 
 ### Association
-belongs_to :users
+belongs_to :user
 has_one :send_record
 
 ## send_recordsテーブル
@@ -38,14 +38,14 @@ has_one :send_record
 |Column            |Type      |Options    |
 |------------------|----------|-----------|
 |user              |references|null: false,foreign_key: true|
-|commo_info        |references|null: false,foreign_key: true|
+|commo             |references|null: false,foreign_key: true|
 
 ### Association
-belongs_to :users
-has_one :commo_info
-has_one :buy_info
+belongs_to :user
+belongs_to :commo
+has_one :buy_record
 
-## buy_infosテーブル
+## buy_recordsテーブル
 
 |Column              |Type    |Options    |
 |--------------------|--------|-----------|
@@ -58,4 +58,4 @@ has_one :buy_info
 |send_record         |references|null: false,foreign_key: true|
 
 ### Association
-has_one :send_record
+belongs_to :send_record

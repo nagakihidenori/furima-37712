@@ -17,46 +17,45 @@ has_many :send_records
 
 ## commo_infosテーブル
 
-|Column               |Type      |Options    |
-|---------------------|----------|-----------|
-|commo_name           |string    |null: false|
-|commo_ex             |text      |null: false|
-|commo_cate_id        |string    |null: false|
-|commo_st_id          |string    |null: false|
-|commo_deli_carge_id  |string    |null: false|
-|commo_deli_sor_id    |string    |null: false|
-|commo_deli_day_id    |string    |null: false|
-|commo_price          |integer   |null: false|
-|nickname             |references|null: false,foreign_key: true|
+|Column               |Type       |Options    |
+|---------------------|-----------|-----------|
+|commo_name           |string     |null: false|
+|commo_ex             |text       |null: false|
+|commo_cate_id        |integer    |null: false|
+|commo_st_id          |integer    |null: false|
+|commo_deli_charge_id |integer    |null: false|
+|prefecture_id        |integer    |null: false|
+|commo_deli_day_id    |integer    |null: false|
+|commo_price          |integer    |null: false|
+|user                 |references |null: false,foreign_key: true|
 
 ### Association
 belongs_to :users
-has_one :buy_infos
-has_one :send_records
+has_one :buy_info
+has_one :send_record
 
 ## send_recordsテーブル
 
 |Column            |Type      |Options    |
 |------------------|----------|-----------|
-|nickname          |references|null: false,foreign_key: true|
-|commo_name        |references|null: false,foreign_key: true|
+|user              |references|null: false,foreign_key: true|
+|commo_info        |references|null: false,foreign_key: true|
 
 ### Association
 belongs_to :users
-has_one :buy_info
-belongs_to :commo_infos
+has_one :commo_info
 
 ## buy_infosテーブル
 
 |Column              |Type    |Options    |
 |--------------------|--------|-----------|
 |post_code           |string  |null: false|
-|prefectures_id      |string  |null: false|
+|prefecture_id       |integer |null: false|
 |municipality        |string  |null: false|
 |cities              |string  |null: false|
-|building            |string  |null: false|
+|building            |string  |           |
 |tell_num            |string  |null: false|
-|myouji              |references|null: false,foreign_key: true|
-|namae               |references|null: false,foreign_key: true|
+|send_record         |references|null: false,foreign_key: true|
 
 ### Association
+has_one :buy_info

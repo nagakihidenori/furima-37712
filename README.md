@@ -1,24 +1,61 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column            |Type    |Options    |
+|------------------|--------|-----------|
+|nickname          |string  |null: false|
+|email             |string  |null: false,unique: true|
+|encrypted_password|string  |null: false|
+|myouji            |string  |null: false|
+|namae             |string  |null: false|
+|kanamyouji        |string  |null: false|
+|kananamae         |string  |null: false|
+|birthday          |date    |null: false|
 
-Things you may want to cover:
+### Association
+has_many :commos
+has_many :send_records
 
-* Ruby version
+## commosテーブル
 
-* System dependencies
+|Column               |Type       |Options    |
+|---------------------|-----------|-----------|
+|commo_name           |string     |null: false|
+|commo_ex             |text       |null: false|
+|commo_cate_id        |integer    |null: false|
+|commo_st_id          |integer    |null: false|
+|commo_deli_charge_id |integer    |null: false|
+|prefecture_id        |integer    |null: false|
+|commo_deli_day_id    |integer    |null: false|
+|commo_price          |integer    |null: false|
+|user                 |references |null: false,foreign_key: true|
 
-* Configuration
+### Association
+belongs_to :user
+has_one :send_record
 
-* Database creation
+## send_recordsテーブル
 
-* Database initialization
+|Column            |Type      |Options    |
+|------------------|----------|-----------|
+|user              |references|null: false,foreign_key: true|
+|commo             |references|null: false,foreign_key: true|
 
-* How to run the test suite
+### Association
+belongs_to :user
+belongs_to :commo
+has_one :buy_record
 
-* Services (job queues, cache servers, search engines, etc.)
+## buy_recordsテーブル
 
-* Deployment instructions
+|Column              |Type    |Options    |
+|--------------------|--------|-----------|
+|post_code           |string  |null: false|
+|prefecture_id       |integer |null: false|
+|municipality        |string  |null: false|
+|cities              |string  |null: false|
+|building            |string  |           |
+|tell_num            |string  |null: false|
+|send_record         |references|null: false,foreign_key: true|
 
-* ...
+### Association
+belongs_to :send_record

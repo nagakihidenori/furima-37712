@@ -9,51 +9,54 @@
 |namae             |string  |null: false|
 |kanamyouji        |string  |null: false|
 |kananamae         |string  |null: false|
-|birthday          |string  |null: false|
+|birthday          |date    |null: false|
 
 ### Association
-has_many :commoinfos
-has_many :sendrecord
+has_many :commo_infos
+has_many :send_records
 
 ## commo_infosテーブル
 
-|Column            |Type    |Options    |
-|------------------|--------|-----------|
-|commo_name        |string  |null: false|
-|commo_ex          |string  |null: false|
-|commo_cate        |string  |null: false|
-|commo_st          |string  |null: false|
-|commo_deli_carge  |string  |null: false|
-|commo_deli_sor    |string  |null: false|
-|commo_deli_day    |string  |null: false|
-|commo_price       |string  |null: false|
+|Column               |Type      |Options    |
+|---------------------|----------|-----------|
+|commo_name           |string    |null: false|
+|commo_ex             |text      |null: false|
+|commo_cate_id        |string    |null: false|
+|commo_st_id          |string    |null: false|
+|commo_deli_carge_id  |string    |null: false|
+|commo_deli_sor_id    |string    |null: false|
+|commo_deli_day_id    |string    |null: false|
+|commo_price          |integer   |null: false|
+|nickname             |references|null: false,foreign_key: true|
 
 ### Association
 belongs_to :users
-has_one_attached :buyinfos
-has_one_attached :sendrecord
+has_one :buy_infos
+has_one :send_records
 
 ## send_recordsテーブル
 
-|Column            |Type    |Options    |
-|------------------|--------|-----------|
-|who_send          |string  |null: false|
-|what_send         |string  |null: false|
+|Column            |Type      |Options    |
+|------------------|----------|-----------|
+|nickname          |references|null: false,foreign_key: true|
+|commo_name        |references|null: false,foreign_key: true|
 
 ### Association
 belongs_to :users
-has_one_attached :buyinfos
-has_one_attached :sendrecord
+has_one :buy_info
+belongs_to :commo_infos
 
 ## buy_infosテーブル
 
-|Column            |Type    |Options    |
-|------------------|--------|-----------|
-|post_code         |string  |null: false|
-|prefectures       |string  |null: false|
-|municipality      |string  |null: false|
-|cities            |string  |null: false|
-|tell_num          |string  |null: false|
+|Column              |Type    |Options    |
+|--------------------|--------|-----------|
+|post_code           |string  |null: false|
+|prefectures_id      |string  |null: false|
+|municipality        |string  |null: false|
+|cities              |string  |null: false|
+|building            |string  |null: false|
+|tell_num            |string  |null: false|
+|myouji              |references|null: false,foreign_key: true|
+|namae               |references|null: false,foreign_key: true|
 
 ### Association
-has_one_attached :commo_infos

@@ -31,7 +31,6 @@ has_many :send_records
 
 ### Association
 belongs_to :users
-has_one :buy_info
 has_one :send_record
 
 ## send_recordsテーブル
@@ -44,6 +43,7 @@ has_one :send_record
 ### Association
 belongs_to :users
 has_one :commo_info
+has_one :buy_info
 
 ## buy_infosテーブル
 
@@ -58,4 +58,4 @@ has_one :commo_info
 |send_record         |references|null: false,foreign_key: true|
 
 ### Association
-has_one :buy_info
+has_one :send_record

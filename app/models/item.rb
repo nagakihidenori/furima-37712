@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   validates :commo_deli_charge_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :commo_deli_day_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  
 
   has_one_attached :image
 

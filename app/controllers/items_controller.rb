@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @commos = Commo.includes(:user)
+    @items = Item.includes(:user)
   end
 
   def new
@@ -10,14 +10,14 @@ class ItemsController < ApplicationController
     @commo_st = CommoSt.all
     @commo_cate = CommoCate.all
     @commo_deli_charge = CommoDeliCharge.all
-    @commo = Commo.new
+    @item = Item.new
   end
 
   def create
-    @commo = Commo.new(commo_params)
+    @item = Item.new(item_params)
 
-    if @commo.save
-      redirect_to root_path(@commo)
+    if @item.save
+      redirect_to root_path(@item)
     else
       render :new
     end
@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
 
   private
 
+  def item_params
+    params.require(:item).permit(:commo_name, :commo_ex, :commo_cate_id, :commo_st_id, :commo_deli_charge_id, :prefecture_id, :commo_deli_day_id, :commo_price, :image).merge(user_id: current_user.id)
+  end
 
 
 

@@ -1,6 +1,6 @@
-class CreateCommos < ActiveRecord::Migration[6.0]
+class CreateItems < ActiveRecord::Migration[6.0]
   def change
-    create_table :commos do |t|
+    create_table :items do |t|
 
       t.string     :commo_name           ,null: false
       t.text       :commo_ex             ,null: false

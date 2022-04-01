@@ -1,4 +1,4 @@
-class Commo < ApplicationRecord
+class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :commo_st, :commo_deli_day, :commo_deli_charge, :commo_cate, :prefecture

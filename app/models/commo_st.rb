@@ -11,6 +11,6 @@ class CommoSt < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :commos
+  has_many :items
 
   end

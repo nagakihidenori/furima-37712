@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :item do
+
     association :user
+    
 
     commo_name { 'tanaka' }
     commo_ex { '東北楽天のピッチャーです' }

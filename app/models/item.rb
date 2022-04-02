@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :commo_st, :commo_deli_day, :commo_deli_charge, :commo_cate, :prefecture
 
+  validates :user_id, presence: true
   validates :commo_name, presence: true
   validates :commo_ex, presence: true
   validates :commo_cate_id, numericality: { other_than: 1 , message: "can't be blank"} 

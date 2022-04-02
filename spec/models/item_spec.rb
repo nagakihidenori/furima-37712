@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
 
   before do
-    @item = FactoryBot.build(:item)
-    @user = FactoryBot.build(:user)
+    @item = FactoryBot.create(:item)
+    sleep 0.1
   end
 
   describe '商品の出品登録' do
@@ -30,9 +30,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Commo name can't be blank")
       end
       it '商品の説明が空欄だと出品できない' do
-        @item.commo_st = nil
+        @item.commo_ex = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Commo st can't be blank")
+        expect(@item.errors.full_messages).to include("Commo ex can't be blank")
       end
       it 'カテゴリーの情報が「---」だと出品できない' do
         @item.commo_cate_id = 1
@@ -87,7 +87,12 @@ RSpec.describe Item, type: :model do
       it '価格が空欄だと出品できない' do
         @item.commo_price = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Commo price can't be blank",)
+        expect(@item.errors.full_messages).to include("Commo price can't be blank")
+      end
+      it '価格が半角数字以外だと出品できない' do
+        @item.commo_price = "１０００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Commo price is not a number")
       end
       it '価格の範囲が、300円未満だと出品できない' do
         @item.commo_price = 1
@@ -98,6 +103,11 @@ RSpec.describe Item, type: :model do
         @item.commo_price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Commo price must be less than or equal to 9999999')
+      end
+      it 'ユーザー登録している人でないと出品できない' do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User can't be blank")
       end
     end
   end

@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Commo cate can't be blank")
       end
       it 'カテゴリーの情報が空欄だと出品できない' do
-        @item.commo_cate_id = nil
+        @item.commo_cate_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Commo cate can't be blank")
       end
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Commo st can't be blank")
       end
       it '商品の状態の情報が空欄だと出品できない' do
-        @item.commo_st_id = nil
+        @item.commo_st_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Commo st can't be blank")
       end
@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Commo deli charge can't be blank")
       end
       it '配送料の負担の情報が空欄だと出品できない' do
-        @item.commo_deli_charge_id = nil
+        @item.commo_deli_charge_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Commo deli charge can't be blank")
       end
@@ -70,7 +70,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '発送元の地域の情報が空欄だと出品できない' do
-        @item.prefecture_id = nil
+        @item.prefecture_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -80,7 +80,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Commo deli day can't be blank")
       end
       it '発送までの日数の情報が空欄だと出品できない' do
-        @item.commo_deli_day_id = nil
+        @item.commo_deli_day_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Commo deli day can't be blank")
       end
@@ -105,9 +105,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Commo price must be less than or equal to 9999999')
       end
       it 'ユーザー登録している人でないと出品できない' do
-        @item.user_id = nil
+        @item.user_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("User can't be blank")
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

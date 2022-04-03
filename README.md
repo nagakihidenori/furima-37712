@@ -15,7 +15,7 @@
 has_many :commos
 has_many :send_records
 
-## commosテーブル
+## itemsテーブル
 
 |Column               |Type       |Options    |
 |---------------------|-----------|-----------|

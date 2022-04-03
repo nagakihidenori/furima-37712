@@ -7,22 +7,12 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @prefecture = Prefecture.all
-    @commo_deli_day = CommoDeliDay.all
-    @commo_st = CommoSt.all
-    @commo_cate = CommoCate.all
-    @commo_deli_charge = CommoDeliCharge.all
-    @item = Item.new
+  make_active_hash
     
   end
 
   def create
-    @prefecture = Prefecture.all
-    @commo_deli_day = CommoDeliDay.all
-    @commo_st = CommoSt.all
-    @commo_cate = CommoCate.all
-    @commo_deli_charge = CommoDeliCharge.all
-    @item = Item.new(item_params)
+  make_active_hash
 
     if @item.save
       redirect_to root_path(@item)
@@ -42,6 +32,15 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to  '/users/sign_in'
     end
+  end
+
+  def make_active_hash
+    @prefecture = Prefecture.all
+    @commo_deli_day = CommoDeliDay.all
+    @commo_st = CommoSt.all
+    @commo_cate = CommoCate.all
+    @commo_deli_charge = CommoDeliCharge.all
+    @item = Item.new
   end
 
 

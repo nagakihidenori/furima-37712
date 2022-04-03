@@ -1,7 +1,16 @@
 class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :commo_st, :commo_deli_day, :commo_deli_charge, :commo_cate, :prefecture
+  belongs_to :commo_st
+  belongs_to :commo_deli_day
+  belongs_to :commo_deli_charge
+  belongs_to :commo_cate
+  belongs_to :prefecture
+
+
+
+
+
 
   validates :commo_name, presence: true
   validates :commo_ex, presence: true

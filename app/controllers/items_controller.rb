@@ -3,16 +3,17 @@ class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index]
 
   def index
-    # @items = Item.includes(:user)
+    @items = Item.includes(:user).order("created_at DESC")
   end
 
   def new
   make_active_hash
-    
+  @item = Item.new
   end
 
   def create
   make_active_hash
+  @item = Item.new(item_params)
 
     if @item.save
       redirect_to root_path(@item)
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
     @commo_st = CommoSt.all
     @commo_cate = CommoCate.all
     @commo_deli_charge = CommoDeliCharge.all
-    @item = Item.new
+    
   end
 
 

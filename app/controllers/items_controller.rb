@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :move_to_signed_in, except: [:index, :show]
+  before_action :move_to_signed_in, except: [:index]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")

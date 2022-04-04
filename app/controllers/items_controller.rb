@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def new
   make_active_hash
-  @item = Item.new(item_params)
+  @item = Item.new
   end
 
   def create

@@ -8,11 +8,12 @@ class ItemsController < ApplicationController
 
   def new
   make_active_hash
-    
+  @item = Item.new(item_params)
   end
 
   def create
   make_active_hash
+  @item = Item.new(item_params)
 
     if @item.save
       redirect_to root_path(@item)
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
     @commo_st = CommoSt.all
     @commo_cate = CommoCate.all
     @commo_deli_charge = CommoDeliCharge.all
-    @item = Item.new
+    
   end
 
 

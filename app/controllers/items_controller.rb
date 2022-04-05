@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :move_to_signed_in, except: [:index, :show]
   before_action :set_params, only: [:show, :edit, :update, :destroy]
+  before_action :destroy_move, only: [:destroy]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -42,12 +43,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user_id == current_user.id
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
   end
 
   private
@@ -73,6 +68,16 @@ class ItemsController < ApplicationController
   def set_params
     @item = Item.find(params[:id])
   end
+
+  def destroy_move
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+    else
+      @item.destroy
+      redirect_to root_path
+    end
+  end
+
 
 
 end

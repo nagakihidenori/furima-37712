@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :move_to_signed_in, except: [:index, :show]
+  before_action :set_params, only: [:show, :edit, :update]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -24,7 +25,24 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
+    if @item.user_id == current_user.id
+      else
+      redirect_to root_path
+    end
+  end
+
+  def update
+    make_active_hash
+
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+
   end
 
   private
@@ -45,7 +63,10 @@ class ItemsController < ApplicationController
     @commo_st = CommoSt.all
     @commo_cate = CommoCate.all
     @commo_deli_charge = CommoDeliCharge.all
-    
+  end
+
+  def set_params
+    @item = Item.find(params[:id])
   end
 
 

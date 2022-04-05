@@ -13,7 +13,7 @@
 
 ### Association
 has_many :commos
-has_many :send_records
+has_many :orders
 
 ## itemsテーブル
 
@@ -31,9 +31,9 @@ has_many :send_records
 
 ### Association
 belongs_to :user
-has_one :send_record
+has_one :order
 
-## send_recordsテーブル
+## ordersテーブル
 
 |Column            |Type      |Options    |
 |------------------|----------|-----------|
@@ -55,7 +55,7 @@ has_one :buy_record
 |cities              |string  |null: false|
 |building            |string  |           |
 |tell_num            |string  |null: false|
-|send_record         |references|null: false,foreign_key: true|
+|order               |references|null: false,foreign_key: true|
 
 ### Association
-belongs_to :send_record
+belongs_to :order

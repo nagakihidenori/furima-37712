@@ -42,10 +42,10 @@ has_one :order
 
 ### Association
 belongs_to :user
-belongs_to :commo
-has_one :buy_record
+belongs_to :item
+has_one :send_record
 
-## buy_recordsテーブル
+## send_recordsテーブル
 
 |Column              |Type    |Options    |
 |--------------------|--------|-----------|

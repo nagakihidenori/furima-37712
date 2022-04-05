@@ -38,7 +38,7 @@ has_one :send_record
 |Column            |Type      |Options    |
 |------------------|----------|-----------|
 |user              |references|null: false,foreign_key: true|
-|commo             |references|null: false,foreign_key: true|
+|item              |references|null: false,foreign_key: true|
 
 ### Association
 belongs_to :user

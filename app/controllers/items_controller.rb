@@ -15,11 +15,13 @@ class ItemsController < ApplicationController
   def create
   make_active_hash
   @item = Item.new(item_params)
+
     if @item.save
       redirect_to root_path(@item)
     else
       render :new
     end
+  
   end
 
   def show
@@ -34,20 +36,13 @@ class ItemsController < ApplicationController
 
   def update
     make_active_hash
+
     if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
     end
-  end
 
-  def destroy
-    if @item.user_id == current_user.id
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
   end
 
   private

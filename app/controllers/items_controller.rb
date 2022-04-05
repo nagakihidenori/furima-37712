@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
   before_action :move_to_signed_in, except: [:index, :show]
-  before_action :set_params, only: [:show, :edit, :update]
+  before_action :set_params, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :destroy]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -15,34 +16,31 @@ class ItemsController < ApplicationController
   def create
   make_active_hash
   @item = Item.new(item_params)
-
     if @item.save
       redirect_to root_path(@item)
     else
       render :new
     end
-  
   end
 
   def show
   end
 
   def edit
-    if @item.user_id == current_user.id
-      else
-      redirect_to root_path
-    end
   end
 
   def update
     make_active_hash
-
     if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
     end
+  end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
@@ -68,6 +66,13 @@ class ItemsController < ApplicationController
   def set_params
     @item = Item.find(params[:id])
   end
+
+  def move_to_index
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
+
 
 
 end

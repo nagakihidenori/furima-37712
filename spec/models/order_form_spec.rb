@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe OrderForm, type: :model do
   before do
     @order_form = FactoryBot.build(:order_form)
+    @order_form.user_id = Faker::Number.non_zero_digit 
+    @order_form.item_id = Faker::Number.non_zero_digit
   end
 
   describe '配送先情報の保存' do

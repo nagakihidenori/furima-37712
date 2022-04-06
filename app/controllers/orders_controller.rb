@@ -40,8 +40,8 @@ class OrdersController < ApplicationController
   end
 
   def no_purchased_item
-    item_find
-    redirect_to root_path if current_user.id == @item.user_id || @item_id.present?
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id
   end
 
   def item_find

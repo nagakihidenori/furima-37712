@@ -7,7 +7,7 @@ class SendRecord < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :municipality, presence: true
   validates :cities, presence: true
-  validates :building
+  validate :building
   validates :tell_num, presence: true
   
   belongs_to :order

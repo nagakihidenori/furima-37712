@@ -6,7 +6,7 @@ class CreateSendRecords < ActiveRecord::Migration[6.0]
       t.integer   :prefecture_id   ,null: false
       t.string    :municipality    ,null: false
       t.string    :cities          ,null: false
-      t.string    :building        ,null: false
+      t.string    :building
       t.string    :tell_num        ,null: false
       t.references :order          ,null: false,foreign_key: true
 

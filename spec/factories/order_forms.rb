@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :order_form do
 
     post_code  {Faker::Number.decimal_part(digits: 3) + '-' + Faker::Number.decimal_part(digits: 4) }
-    prefecture_id  {Faker::Number.between(from: 1, to: 47) }
+    prefecture_id  {Faker::Number.between(from: 2, to: 47) }
     municipality  {Faker::Address.city }
     cities { Faker::Address.street_address }
     building { Faker::Address.street_address }

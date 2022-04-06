@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def create
   make_active_hash
-  @item = Item.new(item_params)
+  @item = Item.create(item_params)
     if @item.save
       redirect_to root_path(@item)
     else

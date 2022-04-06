@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
+    
   end
 
   def new
@@ -24,9 +25,14 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = Order.where(item_id: params[:item_id])
   end
 
   def edit
+    if @item.user_id == current_user.id && @item.order.nil?
+    else
+      redirect_to root_path
+    end
   end
 
   def update

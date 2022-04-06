@@ -7,11 +7,6 @@ class Item < ApplicationRecord
   belongs_to :commo_cate
   belongs_to :prefecture
 
-
-
-
-
-
   validates :commo_name, presence: true
   validates :commo_ex, presence: true
   validates :commo_cate_id, numericality: { other_than: 1 , message: "can't be blank"} 

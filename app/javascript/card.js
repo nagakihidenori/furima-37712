@@ -5,13 +5,14 @@ const pay = () => {
     e.preventDefault();
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-
     const card = {
-      number: formData.get("order_form[number]"),
-      exp_month: formData.get("order_form[exp_month]"),
-      exp_year: `20${formData.get("order_form[exp_year]")}`,
-      cvc: formData.get("order_form[cvc]"),
+      number: formData.get("order[number]"),
+      exp_month: formData.get("order[exp-month]"),
+      exp_year: `20${formData.get("order[exp-year]")}`,
+      cvc: formData.get("order[cvc]"),
     };
+
+    console.log(card)
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
